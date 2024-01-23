@@ -4,22 +4,22 @@ import { useState } from "react";
 
 // ASIDE LINKS ADDED
 var navLinks = [
-
-
-    
-
   {
-    href: "/portal/news-&-events",
+    href: "/portal/menus",
     lable: "Menus",
     icon: "bx bx-news",
   },
   {
-    href: "/portal/destinations",
+    href: "/portal/prices",
     lable: "Prices",
     icon: "bx bx-paper-plane",
   },
 
-
+  {
+    href: "/portal/users",
+    lable: "Users",
+    icon: "bx bx-user-check",
+  },
 ];
 
 const Aside = () => {

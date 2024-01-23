@@ -5,6 +5,7 @@ const nextConfig = {
   env: {
     MONGO_URI:
       "mongodb+srv://abc:abc@cluster0.hftbctu.mongodb.net/panel?retryWrites=true&w=majority",
+      SECURE_URL: "hotelwebite123",
   },
 };
 

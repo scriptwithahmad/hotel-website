@@ -3,3 +3,258 @@
 @tailwind utilities;
 
 
+
+
+/* form css */
+.errDiv {
+    margin-top: 20px;
+  }
+  
+  .errDiv span {
+    color: red;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .signIn_Outer_Div {
+    padding: 50px 15px;
+    position: relative;
+    z-index: 1;
+  }
+  .sign_In_Shape img {
+    position: absolute;
+    z-index: -1;
+  }
+  .sign_In_Inner {
+    padding-top: 50px;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sign_In_Heading {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .sign_In_Heading h2 {
+    font-size: clamp(1.625rem, 1.3958rem + 1.2222vw, 2.3125rem);
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+  .sign_In_Heading p {
+      color: gray;
+    font-weight: normal;
+      margin-bottom: 15px;
+  }
+  .sign_In_Lower {
+    width: 42%;
+  }
+  .sign_In_Wrapper {
+    padding: 50px;
+    padding-bottom: 45px;
+    margin: 0 30px;
+    border-radius: 10px;
+    box-shadow: 0px 40px 80px 0px rgba(2, 2, 26, 0.14);
+    background-color: white;
+  }
+  
+  .sign_In_Google::after {
+    position: absolute;
+    content: "";
+    left: -55%;
+    top: 45%;
+    transform: translateY(-50%);
+    height: 220px;
+    width: 220px;
+    background-color: #e93e30;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .sign_In_Input_Outer {
+    margin-bottom: 25px;
+  }
+  .sign_In_Input_Outer label {
+    font-size: 16px;
+    display: inline-block;
+    color: gray;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .sign_In_Input {
+    position: relative;
+  }
+  .sign_In_Input input:focus {
+    background-color: white;
+  }
+  .sign_In_Input input {
+    width: 100%;
+    height: 60px;
+    line-height: 52px;
+    padding: 0 50px;
+    font-size: 14px;
+    border: 2px solid transparent;
+    background: #f5f6f8;
+    color: black;
+    border-radius: 6px;
+  }
+  .sign_In_Input i {
+    position: absolute;
+    top: 51%;
+    transform: translateY(-50%);
+    left: 25px;
+    font-size: 14px;
+    color: #8e8c94;
+   }
+  .signInSubmitBtn {
+    width: 100%;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: #3d6ce7;
+    padding: 10px 30px;
+    transition: 0.3s all ease-in-out;
+  }
+  
+  .signInSubmitBtn:hover{
+    background-color: #0f1a35;
+  }
+  
+  /* keyframes */
+  @keyframes dot {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(80%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes circle {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @media (min-width: 1025px) and (max-width: 12200px) {
+    .man1 {
+      left: 19%;
+      top: 60%;
+      z-index: 1;
+    }
+    .man2 {
+      top: 60%;
+      right: 18%;
+    }
+    .circle {
+      right: 20%;
+      top: 38%;
+      animation: circle 5s linear 0s infinite alternate;
+      -webkit-animation: circle 5s linear 0s infinite alternate;
+    }
+    .zigzag {
+      left: 24%;
+      top: 43%;
+    }
+    .dot {
+      right: 26%;
+      top: 43%;
+      animation: dot 5s linear 0s infinite alternate;
+      -webkit-animation: dot 5s linear 0s infinite alternate;
+    }
+    .sign_Up {
+      left: 33%;
+      top: 26%;
+      opacity: 0.06;
+      max-width: 100%;
+    }
+    .flower {
+      right: 24%;
+      bottom: 13%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sign_In_Action {
+      flex-direction: column;
+      align-items: center;
+    }
+    .sign_In_Wrapper {
+      margin: 0px;
+    }
+    .man1 {
+      left: 19%;
+      top: 60%;
+      z-index: 1;
+    }
+    .man2 {
+      top: 60%;
+      right: 18%;
+    }
+    .circle {
+      right: 20%;
+      top: 38%;
+      animation: circle 5s linear 0s infinite alternate;
+      -webkit-animation: circle 5s linear 0s infinite alternate;
+    }
+    .zigzag {
+      left: 24%;
+      top: 43%;
+    }
+    .dot {
+      right: 26%;
+      top: 43%;
+      animation: dot 5s linear 0s infinite alternate;
+      -webkit-animation: dot 5s linear 0s infinite alternate;
+    }
+    .sign_Up {
+      top: 26%;
+      opacity: 0.06;
+      max-width: 100%;
+    }
+    .flower {
+      right: 24%;
+      bottom: 13%;
+    }
+    .sign_In_Lower {
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .man1 {
+      display: none;
+    }
+    .man2 {
+      display: none;
+    }
+    .circle {
+      display: none;
+    }
+    .zigzag {
+      display: none;
+    }
+    .dot {
+      display: none;
+    }
+    .sign_Up {
+      display: none;
+    }
+    .flower {
+      display: none;
+    }
+    .sign_In_Lower {
+      width: 100%;
+    }
+  }
+  
