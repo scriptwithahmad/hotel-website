@@ -47,71 +47,10 @@ const login = () => {
 
   return (
     <>
-      {/* <Toaster></Toaster> */}
-
       {/* <TopBanner Heading={"Login"} Route={"Login"}></TopBanner> */}
 
       <div className="outerDiv">
         <div className="signIn_Outer_Div">
-          <div className="sign_In_Shape">
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/man-3.png"
-              alt="Image Here"
-              className="man1"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/man-2.png"
-              alt="Image Here"
-              className="man2"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/circle.png"
-              alt="Image Here"
-              className="circle"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/zigzag.png"
-              alt="Image Here"
-              className="zigzag wavey"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/dot.png"
-              alt="Image Here"
-              className="dot"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              src="image/sign/sign-up.png"
-              alt="Image Here"
-              className="sign_Up"
-            ></Image>
-            <Image
-              height={500}
-              width={500}
-              priority="true"
-              h
-              src="image/sign/flower.png"
-              alt="Image Here"
-              className="flower"
-            ></Image>
-          </div>
           <div className="sign_In_Inner">
             <div className="sign_In_Heading">
               <h2>Sign in</h2>
