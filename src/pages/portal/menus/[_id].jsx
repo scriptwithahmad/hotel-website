@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
-
+import Image from "next/image";
 
 const editMenu = () => {
   const router = useRouter();
@@ -140,7 +140,10 @@ const editMenu = () => {
 
             <div className="avatar-upload">
               {file || menuData?.img ? (
-                <img
+                <Image
+                  height={500}
+                  width={500}
+                  priority="true"
                   alt="photo alt here"
                   className="avatarpreview"
                   src={

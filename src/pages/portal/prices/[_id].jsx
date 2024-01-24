@@ -80,7 +80,7 @@ const priceEdit = () => {
         if (res) {
           toast.success("Item updated succesfully");
           window.location.reload();
-          router.push("/portal/prices")
+          router.push("/portal/prices");
         }
 
         setMenuData({
@@ -197,7 +197,10 @@ const priceEdit = () => {
 
             <div className="avatar-upload">
               {file || menuData.img ? (
-                <img
+                <Image
+                  height={500}
+                  width={500}
+                  priority="true"
                   alt="photo alt here"
                   className="avatarpreview"
                   src={menuData.img ? menuData.img : URL.createObjectURL(file)}

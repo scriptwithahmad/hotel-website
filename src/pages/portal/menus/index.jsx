@@ -27,22 +27,19 @@ const index = () => {
   const [filterByName, setFilterByName] = useState({ title: "" });
 
   // Fetch BLog Here --------------------------------------------------/
-    const {
-      data: productData,
-      isLoading,
-      isError,
-      refetch,
-    } = useQuery(["products", filterByName], async () => {
-      try {
-        const res = await axios.get(`/api/menu?`);
-        return res.data.message;
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    });
-
-
-    
+  const {
+    data: productData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery(["products", filterByName], async () => {
+    try {
+      const res = await axios.get(`/api/menu?`);
+      return res.data.message;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  });
 
   // Input Hadler For Searching by Name ------------------------------------------/
   const searchInputHanler = (e) => {
@@ -57,12 +54,10 @@ const index = () => {
           method: "DELETE",
         });
 
-        if(del){
+        if (del) {
           toast.success("Item Deleted Successfully");
-          refetch()
+          refetch();
         }
-
-      
       }
     } catch (error) {
       console.log(error);
@@ -92,7 +87,6 @@ const index = () => {
   const editor = useRef(null);
   const [file, setFile] = useState("");
   const [isFetching, setIsfetching] = useState(false);
-
 
   const [menuData, setMenuData] = useState({
     name: "",
@@ -140,7 +134,7 @@ const index = () => {
 
         if (res) {
           toast.success("Item added succesfully");
-          window.location.reload()
+          window.location.reload();
         }
         setFile(null);
       } catch (error) {
@@ -157,8 +151,6 @@ const index = () => {
     }
   };
 
- 
-
   return (
     <>
       {/* <Toaster /> */}
@@ -166,9 +158,7 @@ const index = () => {
       <div className="w-full">
         <div className="overflow-x-auto w-full border rounded-2xl">
           <div className="bg-white p-4 flex justify-between items-center flex-col gap-3 lg:flex-row w-full">
-            <h2 className="text-xl font-semibold text-indigo-600">
-              Menu 
-            </h2>
+            <h2 className="text-xl font-semibold text-indigo-600">Menu</h2>
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="">
@@ -216,10 +206,6 @@ const index = () => {
               </tr>
             </thead>
             <tbody>
-
-
-
-
               {productData?.map((v, i) => {
                 return (
                   <tr key={i} className="bg-white border-b border-gray-100">
@@ -231,7 +217,10 @@ const index = () => {
                       className="px-6 flex border-0 items-center py-2 font-medium text-gray-600 whitespace-nowrap"
                     >
                       <div className="w-10 h-10 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                        <img
+                        <Image
+                          height={500}
+                          width={500}
+                          priority="true"
                           className="w-full h-full object-cover"
                           src={v.img}
                           alt="Image Here"
@@ -263,8 +252,6 @@ const index = () => {
                   </tr>
                 );
               })}
-
-
             </tbody>
           </table>
           {/* Pagination start  ------------------------------ */}
@@ -355,11 +342,11 @@ const index = () => {
               {/* IMAGE UPLOAD HERE  */}
 
               <label
-                  className="text-sm text-gray-500 tracking-wider mb-2 block"
-                  htmlFor="name"
-                >
-                  Add Image
-                </label>
+                className="text-sm text-gray-500 tracking-wider mb-2 block"
+                htmlFor="name"
+              >
+                Add Image
+              </label>
               <div className=" border border-gray-200  rounded-sm flex items-center  flex-col justify-center min-h-[30vh]">
                 {file && (
                   <div className=" max-h-[10vh] flex justify-end w-[100%] p-3">
@@ -372,7 +359,10 @@ const index = () => {
 
                 <div className="avatar-upload">
                   {file ? (
-                    <img
+                    <Image
+                      height={500}
+                      width={500}
+                      priority="true"
                       alt="photo alt here"
                       className="avatarpreview"
                       src={URL.createObjectURL(file)}
@@ -419,7 +409,11 @@ const index = () => {
               </div>
               {/* SUBMIT BUTTION  */}
               <div className="mt-4 flex justify-end w-full">
-                <button disabled={isFetching} className=" border-2 border-indigo-400 px-3 py-1 rounded-md text-indigo-400 " type="submit">
+                <button
+                  disabled={isFetching}
+                  className=" border-2 border-indigo-400 px-3 py-1 rounded-md text-indigo-400 "
+                  type="submit"
+                >
                   {isFetching ? "Processing..." : "Upload"}
                 </button>
               </div>

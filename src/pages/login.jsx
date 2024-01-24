@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import Image from "next/image";
+
 // import TopBanner from "@/components/TopBanner";
 
 const login = () => {
@@ -52,41 +54,62 @@ const login = () => {
       <div className="outerDiv">
         <div className="signIn_Outer_Div">
           <div className="sign_In_Shape">
-            <img
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/man-3.png"
               alt="Image Here"
               className="man1"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/man-2.png"
               alt="Image Here"
               className="man2"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/circle.png"
               alt="Image Here"
               className="circle"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/zigzag.png"
               alt="Image Here"
               className="zigzag wavey"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/dot.png"
               alt="Image Here"
               className="dot"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/sign-up.png"
               alt="Image Here"
               className="sign_Up"
-            ></img>
-            <img
+            ></Image>
+            <Image
+              height={500}
+              width={500}
+              priority="true"
               src="image/sign/flower.png"
               alt="Image Here"
               className="flower"
-            ></img>
+            ></Image>
           </div>
           <div className="sign_In_Inner">
             <div className="sign_In_Heading">

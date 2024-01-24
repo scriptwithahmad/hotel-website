@@ -226,7 +226,10 @@ const index = () => {
                       className="px-6 flex border-0 items-center py-2 font-medium text-gray-600 whitespace-nowrap"
                     >
                       <div className="w-10 h-10 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                        <img
+                        <Image
+                          height={500}
+                          width={500}
+                          priority="true"
                           className="w-full h-full object-cover"
                           src={v.img}
                           alt="Image Here"
@@ -404,7 +407,10 @@ const index = () => {
 
                 <div className="avatar-upload">
                   {file ? (
-                    <img
+                    <Image
+                      height={500}
+                      width={500}
+                      priority="true"
                       alt="photo alt here"
                       className="avatarpreview"
                       src={URL.createObjectURL(file)}
