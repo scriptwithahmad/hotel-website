@@ -4,7 +4,7 @@ import Image from "next/image";
 // import queryStr from "query-string";
 import { useRouter } from "next/router";
 // import { useQuery } from "react-query";
-// import { Toaster, toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import React, { useEffect, useRef, useState } from "react";
 // import { format, render, cancel, register } from "timeago.js";
 
@@ -27,20 +27,20 @@ const index = () => {
   const [filterByName, setFilterByName] = useState({ title: "" });
 
   // Fetch BLog Here --------------------------------------------------/
-//   const {
-//     data: productData,
-//     isLoading,
-//     isError,
-//     refetch,
-//   } = useQuery(["products", filterByName], async () => {
-//     try {
-//       const queryString = queryStr.stringify(filterByName);
-//       const res = await axios.get(`/api/Blog/getallblogs?${queryString}`);
-//       return res.data.message;
-//     } catch (error) {
-//       throw new Error(error.message);
-//     }
-//   });
+  //   const {
+  //     data: productData,
+  //     isLoading,
+  //     isError,
+  //     refetch,
+  //   } = useQuery(["products", filterByName], async () => {
+  //     try {
+  //       const queryString = queryStr.stringify(filterByName);
+  //       const res = await axios.get(`/api/Blog/getallblogs?${queryString}`);
+  //       return res.data.message;
+  //     } catch (error) {
+  //       throw new Error(error.message);
+  //     }
+  //   });
 
   // Input Hadler For Searching by Name ------------------------------------------/
   const searchInputHanler = (e) => {
@@ -86,20 +86,10 @@ const index = () => {
   const [file, setFile] = useState("");
   const [isFetching, setIsfetching] = useState(false);
 
-  // FETCH CATEGORY
-  const [AllCats, setAllCats] = useState([]);
-  const fetchcourses = async () => {
-    const { data } = await axios.get("/api/blog-category/get-all-category");
-    setAllCats(data.message);
-  };
-
-  useEffect(() => {
-    fetchcourses();
-  }, []);
 
   const [menuData, setMenuData] = useState({
     name: "",
-    imgAlt:""
+    imgAlt: "",
   });
 
   const UploadImageToCloudinary = async () => {
@@ -125,8 +115,7 @@ const index = () => {
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-
-    setBlogData({ ...BlogData, [name]: value });
+    setMenuData({ ...menuData, [name]: value });
   };
 
   // SUBMIT BLOG ------------------------/
@@ -137,33 +126,20 @@ const index = () => {
     if (file) {
       try {
         const ImageURL = await UploadImageToCloudinary();
-        const res = await axios.post("/api/Blog", {
-          ...BlogData,
-          photo: ImageURL,
-          tags: tags,
+        const res = await axios.post("/api/menu", {
+          ...menuData,
+          img: ImageURL,
         });
 
         if (res) {
-          toast.success("Blog Uploaded Successfully");
+          toast.success("Item added succesfully");
           router.push("/portal/blog");
-          refetch();
         }
-        setTimeout(() => {
-          setShowForm(false);
-        }, 1000);
 
-        setBlogData({
-          title: "",
-          SubTitle: "",
-          metaTitle: "",
-          category: "",
-          description: "",
-          metaDesc: "",
-          avatarAlt: "",
-          authorID: "",
-        });
+
+       
         setFile(null);
-        setTags(null);
+
       } catch (error) {
         if (error?.response?.data?.message) {
           console.log(error.response.data.message);
@@ -178,32 +154,7 @@ const index = () => {
     }
   };
 
-  // TAGS FUNCTIONS----------------------/
-  const [data, setdata] = useState();
-  const [tags, setTags] = useState([]);
-
-  // Convert to Tags Funcitonlity -------/
-  const addTag = (e) => {
-    e.preventDefault();
-    var copy = tags;
-    copy.push(data);
-    setTags(copy);
-    setdata("");
-  };
-
-  // Handle KeyDown Funcitons ------------/
-  const handlekeydown = (e) => {
-    if (e.key === "Enter") {
-      addTag(e);
-    }
-  };
-
-  // Handle Photo Delete -----------------/
-  const handleDel = (i) => {
-    const updatetags = [...tags];
-    updatetags.splice(i, 1);
-    setTags(updatetags);
-  };
+ 
 
   return (
     <>
@@ -355,16 +306,12 @@ const index = () => {
             showForm ? "scale-100 opacity-100" : "scale-0 opacity-0"
           } bg-white duration-500 mx-auto my-8 relative p-4 max-w-xl lg:max-w-4xl border rounded-lg max-h-[92vh] overflow-x-auto`}
         >
-
-
-
-
           {/* -------------------------- UPLOAD NEW BLOG HERE -------------------------------------- */}
           <div className="FormParentDiv">
             {/* <Toaster></Toaster> */}
 
             <form onSubmit={handleSubmit}>
-              {/* <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex items-center justify-between">
                 <h1 className=" text-3xl font-semibold">
                   Upload <span className=" text-indigo-600">Blogs</span>
                 </h1>
@@ -374,34 +321,41 @@ const index = () => {
                 >
                   <i className="fa-solid fa-xmark text-gray-400"></i>
                 </div>
-              </div> */}
+              </div>
+
               {/* NAME */}
-              {/* <div className="my-4">
+              <div className="my-4">
                 <label
                   className="text-sm text-gray-500 tracking-wider"
-                  htmlFor="title"
+                  htmlFor="name"
                 >
-                  Blog Title
+                  Item name
                 </label>
                 <input
-                  id="title"
+                  id="name"
                   type="text"
-                  name="title"
+                  name="name"
                   autoComplete="off"
                   onChange={handleInput}
-                  value={BlogData.title}
-                  placeholder="Enter the title"
+                  value={menuData.name}
+                  placeholder="Enter the item name"
                   className=" border p-2 w-full rounded-md mt-1 text-gray-400 focus:text-gray-500 placeholder:text-gray-300 outline-none focus:ring-2"
                 />
-              </div> */}
-           
-         
+              </div>
+
               {/* IMAGE UPLOAD HERE  */}
-              {/* <div className=" border border-red-400">
+
+              <label
+                  className="text-sm text-gray-500 tracking-wider mb-2 block"
+                  htmlFor="name"
+                >
+                  Add Image
+                </label>
+              <div className=" border border-gray-200  rounded-sm flex items-center  flex-col justify-center min-h-[30vh]">
                 {file && (
-                  <div className="crossimage">
+                  <div className=" flex justify-end w-[100%] p-3">
                     <i
-                      className="fa-solid fa-trash hover:text-red-500 cursor-pointer"
+                      className="fa-solid fa-trash text-red-700 hover:text-red-500 cursor-pointer"
                       onClick={() => setFile("")}
                     ></i>
                   </div>
@@ -416,19 +370,14 @@ const index = () => {
                     />
                   ) : (
                     <>
-                      <div>
-                        <Image
-                          width={200}
-                          height={200}
-                          alt="Upload Blog Lable"
-                          src={"/images/upload-blogs/upload.png"}
-                        ></Image>
+                      <div className=" border-2 border-indigo-600 rounded-[100%] p-3 ">
+                        <label
+                          htmlFor="avatarinput"
+                          className="uplaodImageLable"
+                        >
+                          <i class="bx bx-upload text-[30px]  text-indigo-600"></i>
+                        </label>
                       </div>
-
-                      <label htmlFor="avatarinput" className="uplaodImageLable">
-                        Upload Image
-                      </label>
-
                       <input
                         type="file"
                         id="avatarinput"
@@ -438,36 +387,34 @@ const index = () => {
                     </>
                   )}
                 </div>
-              </div> */}
+              </div>
+
               {/* Image Alternate Text */}
               <div className="my-4">
                 <label
                   className="text-sm text-gray-500 tracking-wider"
-                  htmlFor="photoAlt"
+                  htmlFor="imgAlt"
                 >
                   Image Alternate Text
                 </label>
                 <input
                   type="text"
-                  id="photoAlt"
-                  name="photoAlt"
+                  id="imgAlt"
+                  name="imgAlt"
                   autoComplete="off"
                   onChange={handleInput}
-                  value={BlogData.photoAlt}
+                  value={menuData.imgAlt}
                   placeholder="Enter the Image Alternate"
                   className=" border p-2 w-full rounded-md mt-1 text-gray-400 focus:text-gray-500 placeholder:text-gray-300 outline-none focus:ring-2"
                 />
               </div>
               {/* SUBMIT BUTTION  */}
-              {/* <div className="subBtn">
-                <button disabled={isFetching} type="submit">
+              <div className="mt-4 flex justify-end w-full">
+                <button disabled={isFetching} className=" border-2 border-indigo-400 px-3 py-1 rounded-md text-indigo-400 " type="submit">
                   {isFetching ? "Processing..." : "Upload"}
                 </button>
-              </div> */}
+              </div>
             </form>
-
-
-
           </div>
         </div>
       </div>
