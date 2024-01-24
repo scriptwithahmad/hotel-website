@@ -106,6 +106,7 @@ const login = () => {
               height={500}
               width={500}
               priority="true"
+              h
               src="image/sign/flower.png"
               alt="Image Here"
               className="flower"

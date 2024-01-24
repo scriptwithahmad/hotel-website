@@ -16,10 +16,6 @@ const tableHeader = [
   { lable: "Actions", align: "center" },
 ];
 
-// Jodit React ---------------------
-// import dynamic from "next/dynamic";
-// const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-
 const index = () => {
   const router = useRouter();
   const [showForm, setShowForm] = useState(false);
