@@ -92,9 +92,9 @@ const Contact = () => {
           width="600"
           height="450"
           loading="lazy"
-          allowfullscreen=""
+          allowFullScreen=""
           className=" w-full"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d4408.971468863356!2d-2.9756963509820324!3d56.45939259341565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x48865ceab7339689%3A0x598e934b39f9181!2s7-9%20Whitehall%20St%2C%20Dundee%20DD1%204AA%2C%20UK!3m2!1d56.459392699999995!2d-2.9705464999999998!5e0!3m2!1sen!2s!4v1706076873013!5m2!1sen!2s"
         ></iframe>
       </div>

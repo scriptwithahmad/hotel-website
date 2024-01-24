@@ -27,7 +27,7 @@ const index = () => {
       <h1 className="text-center my-6 text-2xl font-semibold">PHOTO GALLERY</h1>
       <div className=" max-w-[1200px] m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 my-6 px-5 lg:px-4 2xl:px-0">
         {images.map((v, i) => {
-          return <img className=" w-full" src={v} alt="Image Here" />;
+          return <img key={i} className=" w-full" src={v} alt="Image Here" />;
         })}
       </div>
     </div>

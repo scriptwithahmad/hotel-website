@@ -160,7 +160,7 @@ const Hero = () => {
         <Slider {...settings} className=" max-w-[900px] m-auto w-[85%]">
           {reviewData.map((v, i) => {
             return (
-              <div className=" px-2 lg:px-4">
+              <div key={i} className=" px-2 lg:px-4">
                 <div className=" bg-white flex flex-col justify-center items-center gap-3 px-4 py-8">
                   <img
                     src={v.img}
@@ -199,7 +199,7 @@ const Hero = () => {
         <div className=" text-center my-8">
           <h2 className=" text-2xl mb-6 font-semibold">SOCIAL</h2>
           <Link href={"https://www.facebook.com/yammdundee"} target="_black">
-            <i class="fa-brands fa-facebook text-2xl"></i>
+            <i className="fa-brands fa-facebook text-2xl"></i>
           </Link>
         </div>
 

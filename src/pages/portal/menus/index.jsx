@@ -384,7 +384,7 @@ const index = () => {
                           htmlFor="avatarinput"
                           className="uplaodImageLable"
                         >
-                          <i class="bx bx-upload cursor-pointer text-[30px]  text-indigo-600"></i>
+                          <i className="bx bx-upload cursor-pointer text-[30px]  text-indigo-600"></i>
                         </label>
                       </div>
                       <input

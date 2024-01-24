@@ -3,8 +3,6 @@ import React from "react";
 import Image from "next/image";
 
 const index = ({ res }) => {
-
-
   const handleDownload = () => {
     const pdfUrl = "/image/sign/menu.jpg";
 
@@ -26,6 +24,7 @@ const index = ({ res }) => {
       <div className="max-w-[1200px] m-auto my-10 px-5 lg:px-6 2xl:px-0">
         {res?.map((v, i) => (
           <Image
+            key={i}
             width={400}
             height={400}
             alt={v.imgAlt}
@@ -40,7 +39,7 @@ const index = ({ res }) => {
         <h1 className=" text-2xl font-semibold mb-8">MENU</h1>
         <button onClick={handleDownload} className="text-[rgb(94,94,94)]">
           Download File
-          <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
+          <i className="fa-solid fa-chevron-right ml-2 text-sm"></i>
         </button>
       </div>
     </div>
