@@ -8,7 +8,6 @@ const login = () => {
   const router = useRouter();
   const [isError, setIsError] = useState("");
   const [isLogInUser, setIsLoginUser] = useState(false);
-  const [user, setUser] = useState("");
   const [LoginUser, setLoginUser] = useState({
     email: "",
     password: "",
@@ -31,7 +30,6 @@ const login = () => {
       if (login?.data?.success) {
         toast.success("User Logged In");
         router.push("/portal");
-
       }
     } catch (error) {
       console.log(error);
