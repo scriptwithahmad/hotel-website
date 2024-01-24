@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-// import { Toaster, toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 // import TopBanner from "@/components/TopBanner";
 
@@ -27,6 +27,9 @@ const login = () => {
           "Content-Type": "application/json",
         },
       });
+
+
+
 
       if (login?.data?.success) {
         toast.success("User Logged In");
