@@ -58,13 +58,13 @@ const Contact = () => {
           </h2>
           <p className=" leading-[1.6] text-[16px] text-[rgb(94,94,94)] my-6">
             Do you have dietary concerns? Questions about an upcoming event?
-            Drop us a line, and we'll get back to you soon!
+            Drop us a line and we'll get back to you soon!
           </p>
           <h2 className=" text-[rgb(27,27,27)] my-5 font-[16px]">
             YAMM BUFFET
           </h2>
           <p className=" leading-[1.6] text-[16px] text-[rgb(94,94,94)] my-6">
-            7-9 Whitehall Street, Dundee, DD1 4AA, United Kingdom
+            7-9 Whitehall Street Dundee DD1 4AA United Kingdom
           </p>
 
           <div className="leading-[1.6] text-[rgb(94,94,94)] my-8 font-[16px]">
