@@ -16,10 +16,16 @@
     "jose": "^5.2.0",
     "mongoose": "^8.1.0",
     "next": "14.1.0",
+    "primereact": "^10.3.3",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+<<<<<<< HEAD
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
+=======
     "timeago.js": "^4.0.0-beta.3"
+>>>>>>> 029ae8e9815f662f82846fbb331638c9c5d5f7bf
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
