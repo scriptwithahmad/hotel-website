@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 // import { useQuery } from "react-query";
 import { Toaster, toast } from "react-hot-toast";
 import React, { useEffect, useRef, useState } from "react";
-// import { format, render, cancel, register } from "timeago.js";
+import { format, render, cancel, register } from "timeago.js";
 
 const tableHeader = [
   { lable: "Date", align: "left" },
@@ -26,21 +26,20 @@ const index = () => {
   const [loading, setLoading] = useState(false);
   const [filterByName, setFilterByName] = useState({ title: "" });
 
-  // Fetch BLog Here --------------------------------------------------/
-  //   const {
-  //     data: productData,
-  //     isLoading,
-  //     isError,
-  //     refetch,
-  //   } = useQuery(["products", filterByName], async () => {
-  //     try {
-  //       const queryString = queryStr.stringify(filterByName);
-  //       const res = await axios.get(`/api/Blog/getallblogs?${queryString}`);
-  //       return res.data.message;
-  //     } catch (error) {
-  //       throw new Error(error.message);
-  //     }
-  //   });
+ 
+
+  const [menu, setMenu] = useState([])
+  const fetchMenus = async () =>{
+    const fetch = await axios.get("/api/menu")
+    setMenu(fetch?.data?.message)
+  }
+
+  useEffect(() => {
+   fetchMenus()
+  }, [])
+  
+
+
 
   // Input Hadler For Searching by Name ------------------------------------------/
   const searchInputHanler = (e) => {
@@ -213,7 +212,8 @@ const index = () => {
               </tr>
             </thead>
             <tbody>
-              {/* {productData?.data?.map((v, i) => {
+
+         {menu?.map((v, i) => {
                 return (
                   <tr key={i} className="bg-white border-b border-gray-100">
                     <td className="px-6 py-2 text-xs">
@@ -226,7 +226,7 @@ const index = () => {
                       <div className="w-10 h-10 mr-3 border border-gray-100 rounded-full overflow-hidden">
                         <img
                           className="w-full h-full object-cover"
-                          src={v.photo}
+                          src={v.img}
                           alt="Image Here"
                         />
                       </div>
@@ -255,43 +255,15 @@ const index = () => {
                     </td>
                   </tr>
                 );
-              })} */}
+              })}  
+
             </tbody>
           </table>
-          {/* Pagination start  ------------------------------ */}
-          {/* <div className=" flex items-center justify-end pr-10 gap-5 w-full py-5 border-b border-gray-100 bg-gray-50">
-            <span className=" whitespace-nowrap flex items-center justify-center text-sm text-slate-500">
-              {productData?.page} of {productData?.ending} to{" "}
-              {productData?.count}
-            </span>
-            <div className="flex border gap-4 px-4 py-1 rounded-full">
-              <i
-                onClick={() =>
-                  router.push(`/portal/blog?page=${productData?.page - 1}`)
-                }
-                className={`fa-solid fa-angle-left p-1 text-orange-600 text-xs border-r pr-4 ${
-                  productData?.starting == 1
-                    ? "cursor-not-allowed text-slate-300"
-                    : "cursor-pointer hover:text-orange-500"
-                }`}
-              ></i>
-
-              <i
-                onClick={() => {
-                  if (productData?.ending < productData?.count) {
-                    router.push(`/portal/blog?page=${productData?.page + 1}`);
-                  }
-                }}
-                className={`fa-solid fa-angle-right text-orange-600 text-xs p-1 ${
-                  productData?.ending >= productData?.count
-                    ? "cursor-not-allowed text-slate-300"
-                    : "cursor-pointer hover:text-orange-500"
-                }`}
-              ></i>
-            </div>
-          </div> */}
         </div>
       </div>
+
+
+
       {/* NEW MODEL FOR NEW BLOG ---------------------------------------------------------------------------  */}
       <div
         style={{
@@ -353,7 +325,7 @@ const index = () => {
                 </label>
               <div className=" border border-gray-200  rounded-sm flex items-center  flex-col justify-center min-h-[30vh]">
                 {file && (
-                  <div className=" flex justify-end w-[100%] p-3">
+                  <div className=" max-h-[10vh] flex justify-end w-[100%] p-3">
                     <i
                       className="fa-solid fa-trash text-red-700 hover:text-red-500 cursor-pointer"
                       onClick={() => setFile("")}
@@ -370,12 +342,12 @@ const index = () => {
                     />
                   ) : (
                     <>
-                      <div className=" border-2 border-indigo-600 rounded-[100%] p-3 ">
+                      <div className=" cursor-pointer border-2 border-indigo-600 rounded-[100%] p-3 ">
                         <label
                           htmlFor="avatarinput"
                           className="uplaodImageLable"
                         >
-                          <i class="bx bx-upload text-[30px]  text-indigo-600"></i>
+                          <i class="bx bx-upload cursor-pointer text-[30px]  text-indigo-600"></i>
                         </label>
                       </div>
                       <input
