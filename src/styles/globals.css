@@ -255,12 +255,43 @@
   }
 }
 
+/*  SLider Arrows Css HERE ============================ */
+/* icons css  */
+
+#slickBtnNext {
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateX(-50%);
+}
+
+#slickBtnPrev {
+  position: absolute;
+  z-index: 99;
+  left: -100px;
+  top: 50%;
+  transform: translateX(50%);
+}
+
 /* hero burron lick ------------- */
 .globalShadow {
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.432);
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
-.globalShadow:hover{
+.globalShadow:hover {
   box-shadow: 0 0 8px rgba(2, 2, 26, 0.14);
+}
+
+/* Navbar Transiotn ==================== */
+#layer {
+  /* Set initial width */
+  width: 0;
+  /* Set transition property and duration */
+  transition: width 0.3s ease;
+}
+
+#layer.expanded {
+  /* Change width to 100% when the "expanded" class is present */
+  width: 100%;
 }
