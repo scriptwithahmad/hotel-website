@@ -58,7 +58,7 @@ const index = () => {
         });
 
         if(del){
-          toast.success("Blog Deleted Successfully");
+          toast.success("Item Deleted Successfully");
           refetch()
         }
 

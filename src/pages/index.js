@@ -1,11 +1,14 @@
-import React from 'react'
+import Contact from "@/components/Contact";
+import Hero from "@/components/Hero";
+import React from "react";
 
 const index = () => {
   return (
-   <div className='border border-red-400 flex items-center justify-center min-h-[100vh]'>
-    <h1>HOME</h1>
-   </div>
-  )
-}
+    <>
+      <Hero />
+      <Contact />
+    </>
+  );
+};
 
-export default index
+export default index;

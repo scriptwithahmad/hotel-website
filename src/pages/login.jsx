@@ -28,12 +28,10 @@ const login = () => {
         },
       });
 
-
-
-
       if (login?.data?.success) {
         toast.success("User Logged In");
         router.push("/portal");
+
       }
     } catch (error) {
       console.log(error);
@@ -128,7 +126,7 @@ const login = () => {
                         <i className="fa-solid fa-lock"></i>
                       </div>
                     </div>
-              
+
                     <button
                       type="submit"
                       disabled={isLogInUser}
