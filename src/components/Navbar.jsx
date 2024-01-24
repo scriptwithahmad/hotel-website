@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+
+  const router = useRouter()
   const navLinks = [
     {
       label: "HOME",
@@ -15,10 +18,6 @@ const Navbar = () => {
     {
       label: "MENU",
       link: "/menu",
-    },
-    {
-      label: "NEWS",
-      link: "/",
     },
     {
       label: "GALLERY",
@@ -40,7 +39,7 @@ const Navbar = () => {
     });
   }, []);
 
-  const router = usePathname();
+  console.log(router.pathname)
 
   return (
     <>
@@ -61,7 +60,7 @@ const Navbar = () => {
 
           <div className=" lg:flex gap-4 items-center hidden">
             {navLinks?.map((v, i) => (
-              <Link key={i} href={v.link}>
+              <Link key={i} href={v.link} className={router.pathname == v.link ? "navlinkRouter" : null}>
                 {v.label}
               </Link>
             ))}

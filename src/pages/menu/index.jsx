@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
-const index = () => {
+const index = ({ res }) => {
+
+
   const handleDownload = () => {
     const pdfUrl = "/image/sign/menu.jpg";
 
@@ -21,16 +24,15 @@ const index = () => {
       {/* Menu Second Section Start Here --------------------------------------- */}
       <h1 className="text-center my-6 text-2xl font-semibold">XMAS MENU</h1>
       <div className="max-w-[1200px] m-auto my-10 px-5 lg:px-6 2xl:px-0">
-        <img
-          alt="Menu Image Here"
-          src="/image/sign/menu1.webp"
-          className=" aspect-video w-full object-cover shadow-2xl mb-4"
-        />
-        <img
-          alt="Menu Image Here"
-          src="/image/sign/menu2.webp"
-          className=" aspect-video w-full object-cover shadow-2xl"
-        />
+        {res?.map((v, i) => (
+          <Image
+            width={400}
+            height={400}
+            alt={v.imgAlt}
+            src={v.img}
+            className=" my-5 w-full h-auto object-cover"
+          ></Image>
+        ))}
       </div>
 
       {/* Menu First Section Start Here --------------------------------------- */}
@@ -41,11 +43,17 @@ const index = () => {
           <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
         </button>
       </div>
-      <div className="max-w-[1200px] m-auto my-12 border-2 mx-5 lg:mx-6 2xl:mx-0">
-        <img src="/image/sign/menu.jpg" alt="image Here" />
-      </div>
     </div>
   );
 };
 
 export default index;
+
+export async function getServerSideProps() {
+  const data = await fetch("http://localhost:3000/api/menu");
+  const res = await data.json();
+
+  return {
+    props: { res: res?.message },
+  };
+}
