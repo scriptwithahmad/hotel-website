@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const navLinks = [
@@ -10,7 +10,7 @@ const Navbar = () => {
     },
     {
       label: "PRICES",
-      link: "/",
+      link: "/price",
     },
     {
       label: "MENU",
@@ -40,8 +40,7 @@ const Navbar = () => {
     });
   }, []);
 
-  const router = useRouter();
-  console.log(router);
+  const router = usePathname();
 
   return (
     <>
@@ -62,14 +61,14 @@ const Navbar = () => {
 
           <div className=" lg:flex gap-4 items-center hidden">
             {navLinks?.map((v, i) => (
-              <Link key={i} className=" text-gray-600" href={v.link}>
+              <Link key={i} href={v.link}>
                 {v.label}
               </Link>
             ))}
           </div>
 
           <div>
-            <Link className=" text-xl" href={"/"}>
+            <Link className=" text-lg" href={"/"}>
               0232832298
             </Link>
           </div>
