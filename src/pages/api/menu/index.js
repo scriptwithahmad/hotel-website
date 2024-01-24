@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
         break;
 
-      case "POST":
+      case "GET":
         const finding = await menuModel.find();
         res.status(200).json({
           success: true,
