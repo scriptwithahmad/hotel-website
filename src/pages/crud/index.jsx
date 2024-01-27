@@ -45,6 +45,8 @@ const index = () => {
   //   fetch all Notes for blogs
   const [Notes, setNotes] = useState([]);
 
+
+  
   const fetchNotes = async () => {
     const { data } = await axios.get("api/crud/add");
     setNotes(data.message);
