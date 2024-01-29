@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { createIcons } from 'duo-icons';
 
 export default function Document() {
   return (
@@ -14,6 +15,8 @@ export default function Document() {
         src="https://kit.fontawesome.com/00753165f6.js"
         crossorigin="anonymous"
       ></script>
+
+      <script src="https://unpkg.com/duo-icons@latest"></script>
 
       <body>
         <Main />

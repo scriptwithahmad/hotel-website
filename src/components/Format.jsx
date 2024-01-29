@@ -56,7 +56,7 @@ const Format = ({ children }) => {
           </div>
         ) : (
           <div>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
             <Footer />
           </div>

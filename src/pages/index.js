@@ -1,12 +1,16 @@
 import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import React from "react";
+import { createIcons } from 'duo-icons';
+
+
 
 const index = () => {
   return (
     <>
-      <Hero />
-      <Contact />
+      <i data-duoicon="menu"></i>
+      {/* <Hero /> */}
+      {/* <Contact /> */}
     </>
   );
 };

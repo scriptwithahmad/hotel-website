@@ -65,7 +65,7 @@ const index = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      await refetch();
+      // await refetch();
     } catch (error) {
       toast.error(error?.message);
     } finally {
@@ -230,7 +230,8 @@ const index = () => {
                           alt="Image Here"
                         />
                       </div>
-                      {v.title.slice(0, 35) + "..."}
+                      {/* {v.title.slice(0, 35) + "..."} */}
+                      {v.title}
                     </td>
                     <td className="px-6 py-2"> {v.categories} </td>
                     <td className="px-6 py-2"> {v.username} </td>
