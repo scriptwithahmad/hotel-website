@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 // import queryStr from "query-string";
 import { useRouter } from "next/router";
-// import { useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { Toaster, toast } from "react-hot-toast";
 import React, { useEffect, useRef, useState } from "react";
 import { format, render, cancel, register } from "timeago.js";
@@ -11,14 +11,10 @@ import { format, render, cancel, register } from "timeago.js";
 const tableHeader = [
   { lable: "Date", align: "left" },
   { lable: "Name", align: "left" },
-  { lable: "Category", align: "left" },
-  { lable: "Author", align: "left" },
+  // { lable: "Category", align: "left" },
+  // { lable: "Author", align: "left" },
   { lable: "Actions", align: "center" },
 ];
-
-// Jodit React ---------------------
-// import dynamic from "next/dynamic";
-// const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 const index = () => {
   const router = useRouter();
@@ -26,20 +22,20 @@ const index = () => {
   const [loading, setLoading] = useState(false);
   const [filterByName, setFilterByName] = useState({ title: "" });
 
- 
-
-  const [menu, setMenu] = useState([])
-  const fetchMenus = async () =>{
-    const fetch = await axios.get("/api/menu")
-    setMenu(fetch?.data?.message)
-  }
-
-  useEffect(() => {
-   fetchMenus()
-  }, [])
-  
-
-
+  // Fetch BLog Here --------------------------------------------------/
+  const {
+    data: productData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery(["products", filterByName], async () => {
+    try {
+      const res = await axios.get(`/api/menu?`);
+      return res.data.message;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  });
 
   // Input Hadler For Searching by Name ------------------------------------------/
   const searchInputHanler = (e) => {
@@ -47,14 +43,17 @@ const index = () => {
   };
 
   // delete Product by Slug ------------------------------------------------------/
-  const delPost = async (slug) => {
+  const delPost = async (_id) => {
     try {
       if (window.confirm("Are you sure you want to delete") === true) {
-        const del = await fetch(`/api/Blog/${slug}`, {
+        const del = await fetch(`/api/menu/${_id}`, {
           method: "DELETE",
         });
 
-        del && toast.success("Blog Deleted Successfully");
+        if (del) {
+          toast.success("Item Deleted Successfully");
+          refetch();
+        }
       }
     } catch (error) {
       console.log(error);
@@ -84,7 +83,6 @@ const index = () => {
   const editor = useRef(null);
   const [file, setFile] = useState("");
   const [isFetching, setIsfetching] = useState(false);
-
 
   const [menuData, setMenuData] = useState({
     name: "",
@@ -132,13 +130,9 @@ const index = () => {
 
         if (res) {
           toast.success("Item added succesfully");
-          router.push("/portal/blog");
+          window.location.reload();
         }
-
-
-       
         setFile(null);
-
       } catch (error) {
         if (error?.response?.data?.message) {
           console.log(error.response.data.message);
@@ -153,8 +147,6 @@ const index = () => {
     }
   };
 
- 
-
   return (
     <>
       {/* <Toaster /> */}
@@ -162,9 +154,7 @@ const index = () => {
       <div className="w-full">
         <div className="overflow-x-auto w-full border rounded-2xl">
           <div className="bg-white p-4 flex justify-between items-center flex-col gap-3 lg:flex-row w-full">
-            <h2 className="text-xl font-semibold">
-              All <span className="text-indigo-600">Blogs</span>
-            </h2>
+            <h2 className="text-xl font-semibold text-indigo-600">Menu</h2>
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="">
@@ -212,8 +202,7 @@ const index = () => {
               </tr>
             </thead>
             <tbody>
-
-         {menu?.map((v, i) => {
+              {productData?.map((v, i) => {
                 return (
                   <tr key={i} className="bg-white border-b border-gray-100">
                     <td className="px-6 py-2 text-xs">
@@ -224,17 +213,24 @@ const index = () => {
                       className="px-6 flex border-0 items-center py-2 font-medium text-gray-600 whitespace-nowrap"
                     >
                       <div className="w-10 h-10 mr-3 border border-gray-100 rounded-full overflow-hidden">
-                        <img
+                        <Image
+                          height={500}
+                          width={500}
+                          priority="true"
                           className="w-full h-full object-cover"
                           src={v.img}
                           alt="Image Here"
                         />
                       </div>
+<<<<<<< HEAD
                       {/* {v.title.slice(0, 35) + "..."} */}
                       {v.title}
+=======
+                      {v.name}
+>>>>>>> 39731ec51ff2fc466784ecf9d8f639cdf6ed1c49
                     </td>
-                    <td className="px-6 py-2"> {v.categories} </td>
-                    <td className="px-6 py-2"> {v.username} </td>
+                    {/* <td className="px-6 py-2"> {v.name} </td>
+                    <td className="px-6 py-2"> {v.username} </td> */}
                     <td className="px-6 py-2 text-lg text-center">
                       <Link href={`/blog/${v.slug}`}>
                         <i
@@ -242,7 +238,7 @@ const index = () => {
                           className="fa fa-solid fa-eye px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
                         ></i>
                       </Link>
-                      <Link href={`blog/${v.slug}`}>
+                      <Link href={`menus/${v._id}`}>
                         <i
                           title="Edit"
                           className="fa-solid fa-pen-to-square px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-gray-400 text-sm"
@@ -250,21 +246,49 @@ const index = () => {
                       </Link>
                       <i
                         title="Delete"
-                        onClick={() => delPost(v.slug)}
+                        onClick={() => delPost(v._id)}
                         className="fa fa-solid fa-trash px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-full text-red-400 text-sm"
                       ></i>
                     </td>
                   </tr>
                 );
-              })}  
-
+              })}
             </tbody>
           </table>
+          {/* Pagination start  ------------------------------ */}
+          {/* <div className=" flex items-center justify-end pr-10 gap-5 w-full py-5 border-b border-gray-100 bg-gray-50">
+            <span className=" whitespace-nowrap flex items-center justify-center text-sm text-slate-500">
+              {productData?.page} of {productData?.ending} to{" "}
+              {productData?.count}
+            </span>
+            <div className="flex border gap-4 px-4 py-1 rounded-full">
+              <i
+                onClick={() =>
+                  router.push(`/portal/blog?page=${productData?.page - 1}`)
+                }
+                className={`fa-solid fa-angle-left p-1 text-orange-600 text-xs border-r pr-4 ${
+                  productData?.starting == 1
+                    ? "cursor-not-allowed text-slate-300"
+                    : "cursor-pointer hover:text-orange-500"
+                }`}
+              ></i>
+
+              <i
+                onClick={() => {
+                  if (productData?.ending < productData?.count) {
+                    router.push(`/portal/blog?page=${productData?.page + 1}`);
+                  }
+                }}
+                className={`fa-solid fa-angle-right text-orange-600 text-xs p-1 ${
+                  productData?.ending >= productData?.count
+                    ? "cursor-not-allowed text-slate-300"
+                    : "cursor-pointer hover:text-orange-500"
+                }`}
+              ></i>
+            </div>
+          </div> */}
         </div>
       </div>
-
-
-
       {/* NEW MODEL FOR NEW BLOG ---------------------------------------------------------------------------  */}
       <div
         style={{
@@ -319,11 +343,11 @@ const index = () => {
               {/* IMAGE UPLOAD HERE  */}
 
               <label
-                  className="text-sm text-gray-500 tracking-wider mb-2 block"
-                  htmlFor="name"
-                >
-                  Add Image
-                </label>
+                className="text-sm text-gray-500 tracking-wider mb-2 block"
+                htmlFor="name"
+              >
+                Add Image
+              </label>
               <div className=" border border-gray-200  rounded-sm flex items-center  flex-col justify-center min-h-[30vh]">
                 {file && (
                   <div className=" max-h-[10vh] flex justify-end w-[100%] p-3">
@@ -336,7 +360,10 @@ const index = () => {
 
                 <div className="avatar-upload">
                   {file ? (
-                    <img
+                    <Image
+                      height={500}
+                      width={500}
+                      priority="true"
                       alt="photo alt here"
                       className="avatarpreview"
                       src={URL.createObjectURL(file)}
@@ -348,7 +375,7 @@ const index = () => {
                           htmlFor="avatarinput"
                           className="uplaodImageLable"
                         >
-                          <i class="bx bx-upload cursor-pointer text-[30px]  text-indigo-600"></i>
+                          <i className="bx bx-upload cursor-pointer text-[30px]  text-indigo-600"></i>
                         </label>
                       </div>
                       <input
@@ -383,7 +410,11 @@ const index = () => {
               </div>
               {/* SUBMIT BUTTION  */}
               <div className="mt-4 flex justify-end w-full">
-                <button disabled={isFetching} className=" border-2 border-indigo-400 px-3 py-1 rounded-md text-indigo-400 " type="submit">
+                <button
+                  disabled={isFetching}
+                  className=" border-2 border-indigo-400 px-3 py-1 rounded-md text-indigo-400 "
+                  type="submit"
+                >
                   {isFetching ? "Processing..." : "Upload"}
                 </button>
               </div>

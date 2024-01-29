@@ -13,7 +13,7 @@ export default function Document() {
 
       <script
         src="https://kit.fontawesome.com/00753165f6.js"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></script>
 
       <script src="https://unpkg.com/duo-icons@latest"></script>

@@ -10,9 +10,9 @@ export async function middleware(req, res) {
 
   var publicRoutes = ["/login"];
 
-  // if (!AccessToken && pathname === "/portal") {
-  //   return NextResponse.redirect(new URL("/login", req.url));
-  // }
+  if (!AccessToken && pathname === "/portal") {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
 
   if (AccessToken && pathname === "/login") {
     return NextResponse.redirect(new URL("/portal", req.url));

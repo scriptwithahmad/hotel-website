@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-// import { Toaster, toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import Image from "next/image";
+
 // import TopBanner from "@/components/TopBanner";
 
 const login = () => {
   const router = useRouter();
   const [isError, setIsError] = useState("");
   const [isLogInUser, setIsLoginUser] = useState(false);
-  const [user, setUser] = useState("");
   const [LoginUser, setLoginUser] = useState({
     email: "",
     password: "",
@@ -46,49 +47,10 @@ const login = () => {
 
   return (
     <>
-      {/* <Toaster></Toaster> */}
-
       {/* <TopBanner Heading={"Login"} Route={"Login"}></TopBanner> */}
 
       <div className="outerDiv">
         <div className="signIn_Outer_Div">
-          <div className="sign_In_Shape">
-            <img
-              src="image/sign/man-3.png"
-              alt="Image Here"
-              className="man1"
-            ></img>
-            <img
-              src="image/sign/man-2.png"
-              alt="Image Here"
-              className="man2"
-            ></img>
-            <img
-              src="image/sign/circle.png"
-              alt="Image Here"
-              className="circle"
-            ></img>
-            <img
-              src="image/sign/zigzag.png"
-              alt="Image Here"
-              className="zigzag wavey"
-            ></img>
-            <img
-              src="image/sign/dot.png"
-              alt="Image Here"
-              className="dot"
-            ></img>
-            <img
-              src="image/sign/sign-up.png"
-              alt="Image Here"
-              className="sign_Up"
-            ></img>
-            <img
-              src="image/sign/flower.png"
-              alt="Image Here"
-              className="flower"
-            ></img>
-          </div>
           <div className="sign_In_Inner">
             <div className="sign_In_Heading">
               <h2>Sign in</h2>
@@ -125,7 +87,7 @@ const login = () => {
                         <i className="fa-solid fa-lock"></i>
                       </div>
                     </div>
-              
+
                     <button
                       type="submit"
                       disabled={isLogInUser}
